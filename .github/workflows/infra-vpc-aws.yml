@@ -1,0 +1,66 @@
+name: 'Deploy Infraestrutura do VPC'
+
+on:
+  push:
+    branches: [ "feature/criando-vpc" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  working-directory: infra_vpc
+  aws-region: us-east-1
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Setup-Terraform'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.15.5
+      
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN}}
+        aws-region: ${{ env.aws-region }}
+
+    - name: Terraform Format
+      run: terraform fmt -check
+      working-directory: ${{ env.working-directory }}
+
+    - name: Terraform Init
+      run: terraform init
+      working-directory: ${{ env.working-directory }}
+
+    - name: Terraform Validate
+      run: terraform validate
+      working-directory: ${{ env.working-directory }}
+
+    - name: Terraform Plan
+      run: terraform plan -out=tfplan -input=false
+      working-directory: ${{ env.working-directory }}
+
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
+      run: terraform apply tfPlan -auto-approve -input=false
+      working-directory: ${{ env.working-directory }}
+
+    - name: Cleanup Terraform Plan
+      run: rm -f tfplan
