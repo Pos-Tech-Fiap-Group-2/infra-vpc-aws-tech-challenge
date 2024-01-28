@@ -36,7 +36,7 @@ resource "aws_route_table" "public" {
   vpc_id = aws_vpc.tech-challenge-vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.cidr_blocks[0]
     gateway_id = aws_internet_gateway.tech-challenge-igw.id
   }
 
@@ -57,7 +57,7 @@ resource "aws_route_table_association" "tech-challenge-route-table" {
 
 resource "aws_route" "tech-challenge-route" {
   route_table_id         = aws_route_table.public.id
-  destination_cidr_block = "0.0.0.0/0"
+  destination_cidr_block = var.cidr_blocks[0]
   gateway_id             = aws_internet_gateway.tech-challenge-igw.id
 
 }

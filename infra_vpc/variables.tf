@@ -18,3 +18,15 @@ variable "alb_sg_name" {
   default = "tech-challenge-alb-sg"
 
 }
+
+variable "cidr_blocks" {
+  description = "Allow traffic from Cidr blocks, override for internal Cidr blocks"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
+variable "nlb_enabled" {
+  description = "Enable NLB"
+  type        = bool
+  default     = true
+}
