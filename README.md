@@ -1,5 +1,9 @@
 # infra-vpc-aws-tech-challenge
 
+### Descrição
+Este projeto visa automatizar a criação de um [Amazon Virtual Private Cloud (Amazon VPC)](https://aws.amazon.com/pt/vpc/) usando [GitHub Workflow](https://docs.github.com/pt/actions) em uma conta AWS utilizando o terraform. 
+ Oferece controle total sobre seu ambiente de redes virtual, incluindo posicionamento de recursos, conectividade e segurança. Comece a usar configurando sua VPC no console de serviço AWS. Em seguida, adicione recursos a ela, como instâncias do Amazon Elastic Compute Cloud (EC2) e Amazon Relational Database Service (RDS). Por fim, defina como suas VPCs se comunicam entre si, entre contas, zonas de disponibilidade (AZs) ou Regiões da AWS.
+
 ## Membros do Grupo 2
 - [Danilo Monteiro](https://github.com/dmonteirosouza)
 - [Marcel Cozono](https://github.com/macozono)
@@ -7,9 +11,6 @@
 - [Vinicius Furin](https://github.com/VFurin)
 - [Vitor Walcker](https://github.com/VitorWalcker)
 
-### Descrição
-Este projeto visa automatizar a criação de um [Amazon Virtual Private Cloud (Amazon VPC)](https://aws.amazon.com/pt/vpc/) usando [GitHub Workflow](https://docs.github.com/pt/actions) em uma conta AWS utilizando o terraform. 
- Oferece controle total sobre seu ambiente de redes virtual, incluindo posicionamento de recursos, conectividade e segurança. Comece a usar configurando sua VPC no console de serviço AWS. Em seguida, adicione recursos a ela, como instâncias do Amazon Elastic Compute Cloud (EC2) e Amazon Relational Database Service (RDS). Por fim, defina como suas VPCs se comunicam entre si, entre contas, zonas de disponibilidade (AZs) ou Regiões da AWS.
 ## Configuração
 
 1. **Pré-requisitos:**
